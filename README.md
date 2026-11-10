@@ -1,2 +1,2 @@
 # JawadCEO.github.io
-Platform engineering, SRE and distributed systems projects, plus accepted research on FHIR race-condition detection.
+Personal portfolio site for platform engineering, SRE, distributed systems projects, and FHIR race-condition detection research.
