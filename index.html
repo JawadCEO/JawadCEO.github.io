@@ -3,105 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jawad Mohammed: software engineer focused on distributed systems, platform engineering and reliability.">
+<meta name="description" content="Jawad Mohammed: software engineer in distributed systems, platform engineering and reliability.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Jawad Mohammed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: an engineer's status page. A readout strip of measured results, then each project as a service with its pipeline, results and caveats. */
+/* Layout: a quiet engineer's page. Huge name, a "previously at" strip, filterable stack, then numbered sections 01-05 down one column. */
 :root{
-  --bg:#f5f7fa; --panel:#ffffff; --ink:#132030; --muted:#566475; --line:#d9e0e8;
-  --accent:#1f4fd8; --accent-soft:#e6ecfd; --ok:#1d7a4c; --ok-soft:#e3f3ea; --warn:#9a6212; --warn-soft:#fbf0dc;
-  --display:"Archivo","Arial Narrow",Arial,sans-serif;
-  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --bg:#f5f3ef; --panel:#fbfaf8; --ink:#16181c; --muted:#6a6f78; --line:#e2ded6;
+  --dot:#e0562b; --accent:#1f4fd8; --accent-soft:#e8edfb; --chip:#eeebe5;
+  --display:"Bricolage Grotesque","Arial Narrow",Arial,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0d141d; --panel:#141e2a; --ink:#e4eaf1; --muted:#97a6b6; --line:#263446;
-  --accent:#8aa8ff; --accent-soft:#1b2a4d; --ok:#6fd3a0; --ok-soft:#143326; --warn:#e8b45e; --warn-soft:#3a2b12; color-scheme:dark}}
+  --bg:#121315; --panel:#1a1c1f; --ink:#ecebe8; --muted:#9a9ea6; --line:#2b2e33;
+  --dot:#ff7a4d; --accent:#8fa8ff; --accent-soft:#1d2540; --chip:#22252a; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0d141d; --panel:#141e2a; --ink:#e4eaf1; --muted:#97a6b6; --line:#263446;
-  --accent:#8aa8ff; --accent-soft:#1b2a4d; --ok:#6fd3a0; --ok-soft:#143326; --warn:#e8b45e; --warn-soft:#3a2b12; color-scheme:dark}
+  --bg:#121315; --panel:#1a1c1f; --ink:#ecebe8; --muted:#9a9ea6; --line:#2b2e33;
+  --dot:#ff7a4d; --accent:#8fa8ff; --accent-soft:#1d2540; --chip:#22252a; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:1040px;margin:0 auto;padding-block:40px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:56px}
-.wrap>*,section>*,header>*,.proj>*{min-width:0}
-section,header,.proj{grid-template-columns:minmax(0,1fr)}
-a{color:var(--accent);text-underline-offset:3px}
+  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-h1,h2,h3{font-family:var(--display);font-stretch:112%;line-height:1.1;text-wrap:balance;margin:0}
-.mono{font-family:var(--mono)}
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-/* header */
-header{display:grid;gap:18px}
-.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;color:var(--ok);
-  background:var(--ok-soft);padding:4px 10px;border-radius:999px;width:fit-content}
-.status i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
-h1{font-size:clamp(30px,8.4vw,72px);font-weight:800;letter-spacing:-.01em;overflow-wrap:anywhere}
-.fit{white-space:normal}
-.role{font-size:clamp(18px,2.4vw,22px);max-width:40ch;color:var(--ink)}
-.role b{font-weight:600}
-.links{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px;color:var(--muted)}
-.copy{font:inherit;color:var(--accent);background:none;border:1px solid var(--line);border-radius:6px;padding:0 8px;cursor:pointer}
-/* readout */
-.readout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
-.read{padding:18px 20px;display:grid;gap:4px;border-left:1px solid var(--line);min-width:0}
-.read:first-child{border-left:0}
-.num{font-family:var(--display);font-stretch:112%;font-weight:800;font-size:clamp(28px,4vw,38px);font-variant-numeric:tabular-nums;line-height:1}
-.read p{margin:0;font-size:14px}
-.read small{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.wrap>*{min-width:0}
+.cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.dot::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dot);margin-right:10px;vertical-align:1px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;text-wrap:balance}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.mono-mark{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none}
+.mono-mark span{color:var(--dot)}
+.navlinks{display:flex;flex-wrap:wrap;gap:6px 22px}
+.navlinks a{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(48px,9vw,110px) 40px;display:grid;gap:22px}
+.hero h1{font-size:clamp(46px,11vw,128px);font-weight:800;letter-spacing:-.04em}
+.lede{font-size:clamp(17px,2.1vw,20px);max-width:58ch;color:var(--ink);margin:0}
+.lede em{font-style:normal;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:11px 16px;border-radius:999px;border:1px solid var(--ink)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.copy{font:inherit;font-size:12px;color:var(--ink);background:var(--chip);border:0;border-radius:6px;padding:3px 9px;cursor:pointer}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:#2f9e5b}
+
+/* previously at */
+.prev{border-block:1px solid var(--line);padding-block:22px;display:grid;gap:14px}
+.prev-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.prev-row div{min-width:0}
+.prev-row b{display:block;font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.01em}
+.prev-row span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
 /* sections */
-section{display:grid;gap:22px}
-.sechead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px}
-.sechead h2{font-size:clamp(24px,3.4vw,32px);font-weight:800}
-.lede{max-width:65ch;margin:0;color:var(--muted)}
-/* project */
-.proj{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:clamp(18px,3vw,30px);display:grid;gap:18px}
-.ptop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:flex-start}
-.proj h3{font-size:clamp(22px,3vw,28px);font-weight:800}
-.fit{font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:999px;white-space:nowrap}
-.cols{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px}
+section{padding-block:clamp(48px,7vw,84px) 0;display:grid;gap:22px}
+section>*{min-width:0}
+.sh{display:grid;gap:10px}
+.sh .num{font-family:var(--mono);font-size:13px;color:var(--dot)}
+.sh h2{font-size:clamp(30px,4.6vw,48px);font-weight:700;letter-spacing:-.02em}
+.sh p{margin:0;max-width:62ch;color:var(--muted)}
+
+/* stack */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:6px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+.chips div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:2px}
+.chips b{font-weight:600;font-size:15px}
+.chips span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* signals */
+.signals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.sig{padding:22px 18px 22px 0;display:grid;gap:6px;align-content:start;min-width:0}
+.sig+.sig{padding-left:18px;border-left:1px solid var(--line)}
+.sig .n{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,44px);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.sig p{margin:0;font-size:14.5px}
+.sig small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* projects */
+.proj{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.proj>*{min-width:0}
+.ptop{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+.proj h3{font-size:clamp(24px,3.2vw,32px);font-weight:700;letter-spacing:-.01em}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px}
 .cols>div{min-width:0}
-.cols p{margin:0 0 10px;max-width:62ch}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-family:var(--mono);font-size:12.5px;margin:6px 0 4px}
-.flow span{border:1px solid var(--line);border-radius:6px;padding:3px 8px;background:var(--bg)}
-.flow span.key{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-.flow em{font-style:normal;color:var(--muted)}
-.results{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
-.results li{display:grid;grid-template-columns:minmax(92px,auto) minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.results b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;font-size:15px}
+.cols p{margin:0 0 10px;max-width:60ch}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}
+.stack li{font-family:var(--mono);font-size:11.5px;background:var(--chip);border-radius:6px;padding:3px 8px;color:var(--muted)}
+.results{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.results li{display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr);gap:14px;padding:10px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.results b{font-family:var(--mono);font-weight:500;font-size:15px;font-variant-numeric:tabular-nums}
 .results span{font-size:14.5px}
 .arch{margin:0;overflow-x:auto;display:grid;gap:6px}
 .arch svg{display:block;width:100%;min-width:560px;height:auto}
 .arch figcaption{font-size:13px;color:var(--muted)}
-.where{font-family:var(--mono);font-size:12px;color:var(--warn);background:var(--warn-soft);padding:6px 10px;border-radius:6px;margin:0}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.stack li{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:4px;padding:2px 7px;color:var(--muted)}
-/* other projects */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
-.mini{border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--panel)}
-.mini h3{font-size:18px;font-weight:800}
+.where{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:0}
+.where::before{content:"Measured · ";color:var(--dot)}
+.plink{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+
+/* more projects */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--panel)}
+.mini h3{font-size:20px;font-weight:700}
 .mini p{margin:0;font-size:14.5px}
-.mini .big{font-family:var(--mono);font-size:14px;color:var(--ink)}
-/* experience */
-.jobs{display:grid;gap:0;border-top:1px solid var(--line)}
-.job{display:grid;grid-template-columns:minmax(150px,200px) minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
-.job h3{font-size:19px;font-weight:600;font-family:var(--body);font-stretch:normal}
-.job ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px;font-size:15px}
-.when{font-family:var(--mono);font-size:13px;color:var(--muted)}
-.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:18px 28px}
-.skills div{min-width:0}
-.skills p{margin:4px 0 0;font-size:15px}
-footer{border-top:1px solid var(--line);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;color:var(--muted);font-size:14px}
+.mini .big{font-family:var(--mono);font-size:13px}
+
+/* trajectory */
+.timeline{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.when{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.live{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#2f9e5b}
+.timeline h3{font-size:22px;font-weight:700}
+.timeline .org{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px}
+.timeline ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+
+footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-block:28px 40px;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:24px}
+footer h2{font-size:28px;font-weight:800;letter-spacing:-.02em}
+footer p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:40ch}
+footer ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;font-size:14.5px}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+
 @media (max-width:760px){
-  .readout{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .read:nth-child(3){border-left:0}
-  .read:nth-child(n+3){border-top:1px solid var(--line)}
+  .prev-row{grid-template-columns:1fr}
+  .signals{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sig:nth-child(3){padding-left:0;border-left:0}
+  .sig:nth-child(n+3){border-top:1px solid var(--line)}
   .cols{grid-template-columns:1fr}
-  .job{grid-template-columns:1fr;gap:4px}
+  .timeline li{grid-template-columns:1fr;gap:6px}
+  footer{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:no-preference){
   .status i{animation:pulse 2.4s ease-in-out infinite}
@@ -112,161 +151,205 @@ footer{border-top:1px solid var(--line);padding-top:20px;display:flex;flex-wrap:
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <span class="status"><i aria-hidden="true"></i>Open to platform and SRE roles from Jan 2027</span>
-    <h1>Jawad Mohammed</h1>
-    <p class="role">Software engineer with <b>6+ years</b> building fault-tolerant distributed systems in Java, Kafka and Kubernetes. I now focus on platform engineering and reliability.</p>
-    <div class="links">
-      <span>Dallas, TX</span>
-      <a href="https://linkedin.com/in/mohammed-jawad-227b8810a/" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/JawadCEO" rel="noopener">GitHub</a>
-      <a href="Jawad_Mohammed_Resume.pdf" rel="noopener">Resume (PDF)</a>
-      <span>Email: <span class="mono" id="mail">mdjawadf3@gmail.com</span> <button class="copy" id="copy" type="button">Copy</button></span>
+  <nav aria-label="Main">
+    <a class="mono-mark" href="#top">JM<span>.</span></a>
+    <div class="navlinks">
+      <a href="#work">Work</a><a href="#research">Research</a><a href="#journey">Journey</a><a href="Jawad_Mohammed_Resume.pdf" rel="noopener">Resume</a>
     </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <span class="cap dot">Software engineer · Distributed systems, platform &amp; reliability</span>
+    <h1>Jawad Mohammed</h1>
+    <p class="lede">I build distributed systems that stay up. Six years shipping Java, Kafka and Kubernetes systems at Thomson Reuters and Infosys (Verizon IoT), including on-call for production. <em>Now focused on platform engineering and reliability, with an MS in Computer Science at UNT.</em></p>
+    <div class="actions">
+      <a class="btn solid" href="Jawad_Mohammed_Resume.pdf" rel="noopener">Resume (PDF)</a>
+      <a class="btn" href="https://github.com/JawadCEO" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/mohammed-jawad-227b8810a/" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="mail"><span>Email</span><span id="mail">mdjawadf3@gmail.com</span><button class="copy" id="copy" type="button">Copy</button></div>
+    <span class="status"><i aria-hidden="true"></i>Dallas, TX · Open to platform and SRE roles from Jan 2027</span>
   </header>
 
-  <div class="readout" role="list" aria-label="Measured results">
-    <div class="read" role="listitem"><span class="num">99.997%</span><p>request success during releases under load</p><small>EKS GitOps, local cluster</small></div>
-    <div class="read" role="listitem"><span class="num">0 / 2.5M</span><p>acknowledged events lost while killing nodes</p><small>IoT pipeline, chaos test</small></div>
-    <div class="read" role="listitem"><span class="num">1.4 s</span><p>rollback with a single git revert</p><small>EKS GitOps, local cluster</small></div>
-    <div class="read" role="listitem"><span class="num">15 mo</span><p>production with zero critical incidents</p><small>Thomson Reuters</small></div>
+  <div class="prev" aria-label="Previously at">
+    <span class="cap">Previously shipped at</span>
+    <div class="prev-row">
+      <div><b>Thomson Reuters</b><span>Developer QA · Financial Reporting</span></div>
+      <div><b>Infosys</b><span>Senior Associate Consultant · Verizon IoT</span></div>
+      <div><b>University of North Texas</b><span>MS Computer Science · Dec 2026</span></div>
+    </div>
   </div>
 
-  <section aria-labelledby="featured">
-    <div class="sechead"><h2 id="featured">Platform and reliability work</h2><span class="label">3 featured projects</span></div>
-    <p class="lede">Each project rebuilds a problem from my work history in public. Every number comes from a script in the project, and each card says where it was measured.</p>
+  <section aria-labelledby="stack-h">
+    <div class="sh"><span class="num">00</span><h2 id="stack-h">Stack I reach for.</h2></div>
+    <div class="filters" role="group" aria-label="Filter skills">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="lang" aria-pressed="false">Languages</button>
+      <button type="button" data-f="platform" aria-pressed="false">Platform</button>
+      <button type="button" data-f="cloud" aria-pressed="false">Cloud</button>
+      <button type="button" data-f="data" aria-pressed="false">Data</button>
+      <button type="button" data-f="obs" aria-pressed="false">Reliability</button>
+      <button type="button" data-f="ai" aria-pressed="false">AI</button>
+    </div>
+    <div class="chips" id="chips">
+      <div data-c="lang"><b>Java</b><span>Languages</span></div>
+      <div data-c="lang"><b>Python</b><span>Languages</span></div>
+      <div data-c="lang"><b>SQL</b><span>Languages</span></div>
+      <div data-c="lang"><b>Bash</b><span>Languages</span></div>
+      <div data-c="platform"><b>Kubernetes</b><span>Platform</span></div>
+      <div data-c="platform"><b>Docker</b><span>Platform</span></div>
+      <div data-c="platform"><b>Terraform</b><span>Platform</span></div>
+      <div data-c="platform"><b>Argo CD</b><span>Platform</span></div>
+      <div data-c="platform"><b>Linux</b><span>Platform</span></div>
+      <div data-c="platform"><b>Jenkins</b><span>Platform</span></div>
+      <div data-c="cloud"><b>AWS</b><span>Cloud</span></div>
+      <div data-c="data"><b>Kafka</b><span>Data</span></div>
+      <div data-c="data"><b>PostgreSQL</b><span>Data</span></div>
+      <div data-c="data"><b>Redis</b><span>Data</span></div>
+      <div data-c="data"><b>Spring Batch</b><span>Data</span></div>
+      <div data-c="obs"><b>Prometheus</b><span>Reliability</span></div>
+      <div data-c="obs"><b>Grafana</b><span>Reliability</span></div>
+      <div data-c="obs"><b>Chaos testing</b><span>Reliability</span></div>
+      <div data-c="ai"><b>LLMs</b><span>AI</span></div>
+      <div data-c="ai"><b>GitHub Copilot</b><span>AI</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="sig-h">
+    <div class="sh"><span class="num">01</span><h2 id="sig-h">Signals from the work.</h2></div>
+    <div class="signals">
+      <div class="sig"><span class="n">99.997%</span><p>Request success during releases under load</p><small>EKS GitOps · local cluster</small></div>
+      <div class="sig"><span class="n">0 / 2.5M</span><p>Acknowledged events lost while killing nodes</p><small>IoT pipeline · chaos test</small></div>
+      <div class="sig"><span class="n">1.4 s</span><p>Rollback with a single git revert</p><small>EKS GitOps · local cluster</small></div>
+      <div class="sig"><span class="n">15 mo</span><p>Production on-call with zero critical incidents</p><small>Thomson Reuters</small></div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sh"><span class="num">02</span><h2 id="work-h">Platform and reliability work.</h2><p>Each project rebuilds a problem from my work history in public. Every number comes from a script in the project, and each card says where it was measured.</p></div>
 
     <article class="proj">
-      <div class="ptop"><h3>EKS GitOps Platform</h3><span class="fit">Platform engineering</span></div>
+      <div class="ptop"><h3>EKS GitOps Platform</h3><span class="tag">Platform engineering</span></div>
       <div class="cols">
         <div>
           <p>Manual cluster changes drift, are hard to audit and are slow to undo. This platform makes Git the only normal way to change what runs, with fast rollback, policy checks and isolated tenants.</p>
-          <div class="flow" aria-label="Release flow"><span>git push</span><em>→</em><span>CI, 3 scoped roles</span><em>→</em><span class="key">Argo CD sync</span><em>→</em><span>policy checks</span><em>→</em><span>pods via Gateway API</span></div>
           <ul class="stack"><li>Terraform</li><li>Kubernetes</li><li>Argo CD</li><li>Gateway API</li><li>HPA</li><li>IRSA</li></ul>
         </div>
-        <div>
-          <ul class="results">
-            <li><b>14.6 s</b><span>median from git push to all pods updated</span></li>
-            <li><b>1.4 s</b><span>rollback with git revert</span></li>
-            <li><b>2 → 6 pods</b><span>in 69 s under a 3x traffic spike</span></li>
-            <li><b>21% → 2.7%</b><span>fast 503s during spikes, after three fixes</span></li>
-            <li><b>12 tests</b><span>Terraform for VPC, EKS and IRSA, against a mocked AWS provider</span></li>
-          </ul>
-        </div>
+        <ul class="results">
+          <li><b>14.6 s</b><span>median from git push to all pods updated</span></li>
+          <li><b>1.4 s</b><span>rollback with git revert</span></li>
+          <li><b>2 → 6 pods</b><span>in 69 s under a 3x traffic spike</span></li>
+          <li><b>21% → 2.7%</b><span>fast 503s during spikes, after three fixes</span></li>
+          <li><b>12 tests</b><span>Terraform for VPC, EKS and IRSA, against a mocked AWS provider</span></li>
+        </ul>
       </div>
       <figure class="arch"><svg viewBox="0 0 724 316" role="img" aria-label="EKS GitOps architecture" xmlns="http://www.w3.org/2000/svg"><defs><marker id="eks-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs><rect x="0" y="16" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="63.0" style="fill:var(--ink);font:600 13px var(--body)">Deliver</text><rect x="0" y="116" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="163.0" style="fill:var(--ink);font:600 13px var(--body)">Cluster</text><rect x="0" y="216" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="263.0" style="fill:var(--ink);font:600 13px var(--body)">Traffic, AWS</text><path d="M246 58.0H264" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M400 58.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M554 58.0H572" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M640.0 86V130" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M572 158.0H554" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M246 158.0H264" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M400 158.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M400 258.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M486.0 230V186" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><path d="M504.0 186V208.0H640.0V230" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#eks-a)"/><rect x="110" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="52" style="fill:var(--ink);font:600 13px var(--body)">Git push</text><text x="120" y="70" style="fill:var(--muted);font:11.5px var(--body)">release or revert</text><rect x="264" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="52" style="fill:var(--ink);font:600 13px var(--body)">CI</text><text x="274" y="70" style="fill:var(--muted);font:11.5px var(--body)">3 scoped roles</text><rect x="418" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="52" style="fill:var(--ink);font:600 13px var(--body)">Config repo</text><text x="428" y="70" style="fill:var(--muted);font:11.5px var(--body)">desired state</text><rect x="572" y="30" width="136" height="56" rx="7" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="582" y="52" style="fill:var(--ink);font:600 13px var(--body)">Argo CD</text><text x="582" y="70" style="fill:var(--muted);font:11.5px var(--body)">syncs and self-heals</text><rect x="110" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="152" style="fill:var(--ink);font:600 13px var(--body)">Metrics</text><text x="120" y="170" style="fill:var(--muted);font:11.5px var(--body)">load signals</text><rect x="264" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="152" style="fill:var(--ink);font:600 13px var(--body)">Autoscaler</text><text x="274" y="170" style="fill:var(--muted);font:11.5px var(--body)">adds pods on load</text><rect x="418" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="152" style="fill:var(--ink);font:600 13px var(--body)">Tenant pods</text><text x="428" y="170" style="fill:var(--muted);font:11.5px var(--body)">ready-gated rollout</text><rect x="572" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="582" y="152" style="fill:var(--ink);font:600 13px var(--body)">Policy checks</text><text x="582" y="170" style="fill:var(--muted);font:11.5px var(--body)">refuse bad workloads</text><rect x="264" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="252" style="fill:var(--ink);font:600 13px var(--body)">Users</text><text x="274" y="270" style="fill:var(--muted);font:11.5px var(--body)">live and load traffic</text><rect x="418" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="252" style="fill:var(--ink);font:600 13px var(--body)">Gateway API</text><text x="428" y="270" style="fill:var(--muted);font:11.5px var(--body)">routes to ready pods</text><rect x="572" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="582" y="252" style="fill:var(--ink);font:600 13px var(--body)">AWS services</text><text x="582" y="270" style="fill:var(--muted);font:11.5px var(--body)">via IRSA, no keys</text></svg><figcaption>Architecture: Git is the only normal path to the cluster.</figcaption></figure>
-      <p class="where">Measured on a local Kubernetes cluster. A live EKS run for spin-up time and IRSA is planned.</p>
+      <p class="where">On a local Kubernetes cluster. A live EKS run for spin-up time and IRSA is planned.</p>
     </article>
 
     <article class="proj">
-      <div class="ptop"><h3>IoT Telemetry Pipeline</h3><span class="fit">Distributed systems</span></div>
+      <div class="ptop"><h3>IoT Telemetry Pipeline</h3><span class="tag">Distributed systems</span></div>
       <div class="cols">
         <div>
           <p>Polling every device finds failures late and adds load as the fleet grows. This event pipeline tracks device status in real time, and marks a device offline when its heartbeats stop, without false alarms during an outage.</p>
-          <div class="flow" aria-label="Data flow"><span>devices</span><em>→</em><span>ingest gateway</span><em>→</em><span class="key">Kafka</span><em>→</em><span>stream processor</span><em>→</em><span>PostgreSQL</span></div>
           <ul class="stack"><li>Kafka</li><li>Stream processing</li><li>PostgreSQL</li><li>Redis</li><li>Chaos testing</li></ul>
         </div>
-        <div>
-          <ul class="results">
-            <li><b>0 lost</b><span>of 2.5M acknowledged events while killing a broker, consumer, processor and ingest node</span></li>
-            <li><b>500/sec</b><span>sustained at about 50 ms p95</span></li>
-            <li><b>2,000/sec</b><span>with no loss</span></li>
-            <li><b>29% faster</b><span>batch inserts than plain JDBC batching; 87% faster than row by row</span></li>
-          </ul>
-        </div>
+        <ul class="results">
+          <li><b>0 lost</b><span>of 2.5M acknowledged events while killing a broker, consumer, processor and ingest node</span></li>
+          <li><b>500/sec</b><span>sustained at about 50 ms p95</span></li>
+          <li><b>2,000/sec</b><span>with no loss</span></li>
+          <li><b>29% faster</b><span>batch inserts than plain JDBC batching; 87% faster than row by row</span></li>
+        </ul>
       </div>
       <figure class="arch"><svg viewBox="0 0 724 316" role="img" aria-label="IoT telemetry architecture" xmlns="http://www.w3.org/2000/svg"><defs><marker id="iot-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs><rect x="0" y="16" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="63.0" style="fill:var(--ink);font:600 13px var(--body)">Ingest</text><rect x="0" y="116" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="163.0" style="fill:var(--ink);font:600 13px var(--body)">Process</text><rect x="0" y="216" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="263.0" style="fill:var(--ink);font:600 13px var(--body)">Store, serve</text><path d="M246 58.0H264" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M400 58.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M468.0 86V108.0H332.0V130" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M264 158.0H246" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M400 158.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M332.0 186V230" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M486.0 186V230" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><path d="M554 258.0H572" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#iot-a)"/><rect x="110" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="52" style="fill:var(--ink);font:600 13px var(--body)">Devices</text><text x="120" y="70" style="fill:var(--muted);font:11.5px var(--body)">telemetry, heartbeats</text><rect x="264" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="52" style="fill:var(--ink);font:600 13px var(--body)">Ingest gateway</text><text x="274" y="70" style="fill:var(--muted);font:11.5px var(--body)">rejects unknown</text><rect x="418" y="30" width="136" height="56" rx="7" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="428" y="52" style="fill:var(--ink);font:600 13px var(--body)">Kafka</text><text x="428" y="70" style="fill:var(--muted);font:11.5px var(--body)">keyed by device</text><rect x="110" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="152" style="fill:var(--ink);font:600 13px var(--body)">Redis</text><text x="120" y="170" style="fill:var(--muted);font:11.5px var(--body)">duplicate check</text><rect x="264" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="152" style="fill:var(--ink);font:600 13px var(--body)">Stream processor</text><text x="274" y="170" style="fill:var(--muted);font:11.5px var(--body)">orders, dedupes</text><rect x="418" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="152" style="fill:var(--ink);font:600 13px var(--body)">Status monitor</text><text x="428" y="170" style="fill:var(--muted);font:11.5px var(--body)">heartbeat timers</text><rect x="264" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="252" style="fill:var(--ink);font:600 13px var(--body)">Telemetry tables</text><text x="274" y="270" style="fill:var(--muted);font:11.5px var(--body)">48h raw partitions</text><rect x="418" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="252" style="fill:var(--ink);font:600 13px var(--body)">Status tables</text><text x="428" y="270" style="fill:var(--muted);font:11.5px var(--body)">latest, 90d history</text><rect x="572" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="582" y="252" style="fill:var(--ink);font:600 13px var(--body)">Status API</text><text x="582" y="270" style="fill:var(--muted);font:11.5px var(--body)">current status</text></svg><figcaption>Architecture: Kafka separates fast ingest from processing and storage.</figcaption></figure>
-      <p class="where">Measured on rebuild hardware. Latency holds at median and p95, not p99.</p>
+      <p class="where">On rebuild hardware. Latency holds at median and p95, not p99.</p>
     </article>
 
     <article class="proj">
-      <div class="ptop"><h3>PulseLink Real-Time Alerting</h3><span class="fit">Reliability and observability</span></div>
+      <div class="ptop"><h3>PulseLink Real-Time Alerting</h3><span class="tag">Reliability and observability</span></div>
       <div class="cols">
         <div>
           <p>A dangerous vital sign is useless if no nurse sees it. PulseLink streams vitals, detects conditions, pushes alerts to dashboards over WebSocket, and escalates until someone responds.</p>
-          <div class="flow" aria-label="Alert flow"><span>vitals stream</span><em>→</em><span>rule detector</span><em>→</em><span class="key">alert router</span><em>→</em><span>WebSocket dashboard</span><em>→</em><span>escalation</span></div>
           <ul class="stack"><li>Java</li><li>WebSockets</li><li>Prometheus</li><li>Grafana</li><li>Docker</li></ul>
         </div>
-        <div>
-          <ul class="results">
-            <li><b>1.5 s → 0.13 s</b><span>p99, after fixing a bug the first load test found</span></li>
-            <li><b>8.2 s → 0.5 s</b><span>p95 alert delay during a backlog</span></li>
-            <li><b>+24%</b><span>throughput, 4,334 to 5,377 events/sec</span></li>
-            <li><b>154 ms</b><span>p95 at 3x traffic, with no alerts lost</span></li>
-          </ul>
-        </div>
+        <ul class="results">
+          <li><b>1.5 → 0.13 s</b><span>p99, after fixing a bug the first load test found</span></li>
+          <li><b>8.2 → 0.5 s</b><span>p95 alert delay during a backlog</span></li>
+          <li><b>+24%</b><span>throughput, 4,334 to 5,377 events/sec</span></li>
+          <li><b>154 ms</b><span>p95 at 3x traffic, with no alerts lost</span></li>
+        </ul>
       </div>
       <figure class="arch"><svg viewBox="0 0 724 316" role="img" aria-label="PulseLink alerting architecture" xmlns="http://www.w3.org/2000/svg"><defs><marker id="pulse-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs><rect x="0" y="16" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="63.0" style="fill:var(--ink);font:600 13px var(--body)">Detect</text><rect x="0" y="116" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="163.0" style="fill:var(--ink);font:600 13px var(--body)">Route</text><rect x="0" y="216" width="724" height="84" rx="8" style="fill:var(--bg)"/><text x="14" y="263.0" style="fill:var(--ink);font:600 13px var(--body)">Deliver</text><path d="M246 58.0H264" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M332.0 86V130" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M246 158.0H264" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M400 158.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M332.0 186V230" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M400 258.0H418" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M264 258.0H246" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><path d="M178.0 230V186" style="fill:none;stroke:var(--muted);stroke-width:1.25" marker-end="url(#pulse-a)"/><rect x="110" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="52" style="fill:var(--ink);font:600 13px var(--body)">Vitals stream</text><text x="120" y="70" style="fill:var(--muted);font:11.5px var(--body)">keyed by patient</text><rect x="264" y="30" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="52" style="fill:var(--ink);font:600 13px var(--body)">Rule detector</text><text x="274" y="70" style="fill:var(--muted);font:11.5px var(--body)">checkpointed state</text><rect x="110" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="152" style="fill:var(--ink);font:600 13px var(--body)">Escalation worker</text><text x="120" y="170" style="fill:var(--muted);font:11.5px var(--body)">overdue alerts</text><rect x="264" y="130" width="136" height="56" rx="7" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="274" y="152" style="fill:var(--ink);font:600 13px var(--body)">Alert router</text><text x="274" y="170" style="fill:var(--muted);font:11.5px var(--body)">dedupes, targets</text><rect x="418" y="130" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="152" style="fill:var(--ink);font:600 13px var(--body)">Session registry</text><text x="428" y="170" style="fill:var(--muted);font:11.5px var(--body)">nurse to gateway</text><rect x="110" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="120" y="252" style="fill:var(--ink);font:600 13px var(--body)">PostgreSQL</text><text x="120" y="270" style="fill:var(--muted);font:11.5px var(--body)">alerts, timers, audit</text><rect x="264" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="274" y="252" style="fill:var(--ink);font:600 13px var(--body)">WS gateways</text><text x="274" y="270" style="fill:var(--muted);font:11.5px var(--body)">push, record acks</text><rect x="418" y="230" width="136" height="56" rx="7" style="fill:var(--panel);stroke:var(--line);stroke-width:1.25"/><text x="428" y="252" style="fill:var(--ink);font:600 13px var(--body)">Nurse dashboard</text><text x="428" y="270" style="fill:var(--muted);font:11.5px var(--body)">alert and ack</text></svg><figcaption>Architecture: the router saves each alert before it reaches a nurse.</figcaption></figure>
-      <p class="where">Benchmarks are the median of 3 runs on simulated patient data.</p>
+      <p class="where">Median of 3 runs on simulated patient data.</p>
     </article>
   </section>
 
-  <section aria-labelledby="research">
-    <div class="sechead"><h2 id="research">Research</h2><span class="label">Accepted for publication · MDPI</span></div>
+  <section id="research" aria-labelledby="res-h">
+    <div class="sh"><span class="num">03</span><h2 id="res-h">On the record.</h2><p>Accepted for publication · MDPI · with Gahangir Hossain, University of North Texas</p></div>
     <article class="proj">
-      <div class="ptop"><h3>Detecting Race Conditions in FHIR-Based Healthcare Interoperability: A Formal Graph-Theoretic Approach</h3><span class="fit">Concurrency · distributed systems</span></div>
-      <p class="label" style="margin:0">Jawad Mohammed, Gahangir Hossain · University of North Texas</p>
+      <div class="ptop"><h3>Detecting Race Conditions in FHIR-Based Healthcare Interoperability: A Formal Graph-Theoretic Approach</h3></div>
       <div class="cols">
         <div>
           <p>Hospital systems read and write the same patient records through FHIR APIs at the same time, and FHIR defines no locking. A lab can update an allergy record while the EHR approves a prescription from the old version, so each system acts correctly and the patient still gets a contraindicated drug.</p>
-          <p>I modelled every client and record as a graph, the FHIR Resource Access Graph (FRAG), where a race condition becomes a pattern in that graph. I defined three race types with soundness and completeness proofs, and built a three-pass detector.</p>
-          <div class="flow" aria-label="Deployment flow"><span>FHIR server</span><em>→</em><span>audit log</span><em>→</em><span class="key">FRAG detector</span><em>→</em><span>race alerts</span></div>
+          <p>I modelled every client and record as a graph, the FHIR Resource Access Graph (FRAG), where a race condition becomes a pattern in that graph, with soundness and completeness proofs and a three-pass detector.</p>
           <ul class="stack"><li>Python</li><li>NetworkX</li><li>Graph theory</li><li>Formal methods</li><li>HL7 FHIR R4</li></ul>
         </div>
         <div>
           <ul class="results">
             <li><b>90.0% F1</b><span>under concurrent access, against 25.5% for a time-window baseline</span></li>
             <li><b>+64.5 pts</b><span>F1 gain over the baseline across all three race types</span></li>
-            <li><b>250,000</b><span>events processed with near-linear scaling on a single core</span></li>
-            <li><b>2 modes</b><span>batch audit, or streaming through Kafka for near-real-time alerts</span></li>
+            <li><b>250,000</b><span>events with near-linear scaling on a single core</span></li>
+            <li><b>2 modes</b><span>batch audit, or streaming through Kafka</span></li>
           </ul>
-          <p style="margin:12px 0 0"><a href="https://github.com/JawadCEO/FRAG_Simulation" rel="noopener">Code and simulation on GitHub</a></p>
+          <p style="margin:12px 0 0"><a class="plink" href="https://github.com/JawadCEO/FRAG_Simulation" rel="noopener">Code and simulation ↗</a></p>
         </div>
       </div>
-      <p class="where">Evaluated on 1,500 synthetic FHIR R4 transaction logs with injected races, not a live clinical deployment.</p>
+      <p class="where">On 1,500 synthetic FHIR R4 transaction logs with injected races, not a live clinical deployment.</p>
     </article>
   </section>
 
-  <section aria-labelledby="more">
-    <div class="sechead"><h2 id="more">More projects</h2><span class="label">5 rebuilds</span></div>
+  <section aria-labelledby="more-h">
+    <div class="sh"><span class="num">04</span><h2 id="more-h">More rebuilds.</h2></div>
     <div class="grid">
-      <div class="mini"><span class="label">Batch · legacy migration</span><h3>Spring Batch Migration</h3><p>Moves a COBOL nightly job reading EBCDIC and packed decimals to partitioned Spring Batch with crash-safe restart.</p><p class="big">1.37M records matched COBOL to the cent · 106,493 rows/sec with COPY</p></div>
-      <div class="mini"><span class="label">Batch · compliance</span><h3>Statutory Validation Engine</h3><p>Rules-as-data validation for US, UK, German and Indian tax filings, migrated off a monolith with a strangler gateway.</p><p class="big">10,000 synthetic filings · every injected error caught, no false flags</p></div>
-      <div class="mini"><span class="label">ML · payments</span><h3>Fraud Detection Platform</h3><p>Real-time XGBoost scoring with SHAP reasons and block, review and allow tiers.</p><p class="big">6.1 ms p95 · 92.7% block precision on synthetic data</p></div>
-      <div class="mini"><span class="label">AI · education</span><h3>LLM Grading Service</h3><p>Short-answer grading with an LLM and two Redis cache layers that keep working if Redis fails.</p><p class="big">Agreement with graders 35.5% → 43.2% · p95 to 155-250 ms with cache</p></div>
-      <div class="mini"><span class="label">AI · documents</span><h3>Document AI Extractor</h3><p>Extracts drug-label fields from PDFs with OCR, tying every value to the box it came from.</p><p class="big">Heavy scans 0% → 61% with OCR cleanup · LLM evaluation in progress</p></div>
+      <div class="mini"><span class="cap">Batch · legacy migration</span><h3>Spring Batch Migration</h3><p>Moves a COBOL nightly job reading EBCDIC and packed decimals to partitioned Spring Batch with crash-safe restart.</p><p class="big">1.37M records matched COBOL to the cent · 106,493 rows/sec with COPY</p></div>
+      <div class="mini"><span class="cap">Batch · compliance</span><h3>Statutory Validation Engine</h3><p>Rules-as-data validation for US, UK, German and Indian tax filings, migrated off a monolith with a strangler gateway.</p><p class="big">10,000 synthetic filings · every injected error caught, no false flags</p></div>
+      <div class="mini"><span class="cap">ML · payments</span><h3>Fraud Detection Platform</h3><p>Real-time XGBoost scoring with SHAP reasons and block, review and allow tiers.</p><p class="big">6.1 ms p95 · 92.7% block precision on synthetic data</p></div>
+      <div class="mini"><span class="cap">AI · education</span><h3>LLM Grading Service</h3><p>Short-answer grading with an LLM and two Redis cache layers that keep working if Redis fails.</p><p class="big">Agreement with graders 35.5% → 43.2% · p95 to 155-250 ms with cache</p></div>
+      <div class="mini"><span class="cap">AI · documents</span><h3>Document AI Extractor</h3><p>Extracts drug-label fields from PDFs with OCR, tying every value to the box it came from.</p><p class="big">Heavy scans 0% → 61% with OCR cleanup · LLM evaluation in progress</p></div>
     </div>
   </section>
 
-  <section aria-labelledby="exp">
-    <div class="sechead"><h2 id="exp">Experience</h2><span class="label">6+ years</span></div>
-    <div class="jobs">
-      <div class="job"><div><span class="when">Apr 2023 - Nov 2024</span></div><div><h3>Senior Associate Consultant, Infosys (client: Verizon IoT)</h3><ul><li>Rolled out 4 Spring Boot microservices for IoT event ingestion during a migration off COBOL, raising throughput 20%.</li><li>Owned the Kafka Streams integration, sustaining 10K+ events per minute at peak device load.</li><li>Built fault-tolerant Spring Batch pipelines that kept single bad records from stalling jobs.</li></ul></div></div>
-      <div class="job"><div><span class="when">Sep 2018 - Mar 2023</span></div><div><h3>Intern to Developer QA, Thomson Reuters</h3><ul><li>Led the migration of 10+ Jenkins CI pipelines to AWS, cutting release cycle time 30%.</li><li>Drove root cause analysis and preventive monitoring, reducing repeat outages 15%.</li><li>Kept production free of critical incidents for 15 consecutive months during a staffing shortage.</li></ul></div></div>
-      <div class="job"><div><span class="when">Aug 2025 - Present</span></div><div><h3>Graduate Teaching Assistant, University of North Texas</h3><ul><li>Support a 100-student Foundations of Computing course.</li></ul></div></div>
-    </div>
+  <section id="journey" aria-labelledby="jr-h">
+    <div class="sh"><span class="num">05</span><h2 id="jr-h">Trajectory.</h2></div>
+    <ol class="timeline">
+      <li><div class="when">2025 — Present<span class="live">● LIVE</span></div><div><h3>MS Computer Science · Graduate Teaching Assistant</h3><p class="org">University of North Texas · Denton, TX</p><ul><li>MS expected December 2026; accepted paper on race-condition detection in FHIR APIs.</li><li>Teaching assistant for a 100-student Foundations of Computing course.</li></ul></div></li>
+      <li><div class="when">2023 — 2024</div><div><h3>Senior Associate Consultant</h3><p class="org">Infosys · Client: Verizon IoT</p><ul><li>Helped design and roll out 4 Spring Boot microservices for IoT ingestion during a migration off COBOL, raising throughput 20%.</li><li>Owned the Kafka Streams integration, sustaining 10K+ events per minute at peak device load.</li><li>Built fault-tolerant Spring Batch pipelines that kept 100% data integrity.</li></ul></div></li>
+      <li><div class="when">2018 — 2023</div><div><h3>Intern → Associate Developer QA → Developer QA</h3><p class="org">Thomson Reuters · Financial Reporting platform</p><ul><li>Served on the production on-call rotation with zero critical incidents for 15 consecutive months.</li><li>Supported Linux-based QA, UAT, SAT and production environments through releases and incident triage.</li><li>Led the migration of 10+ Jenkins CI pipelines to AWS with a partner team, cutting release cycle time 30%.</li><li>Drove root cause analysis and preventive monitoring, reducing repeat outages 15%.</li></ul></div></li>
+    </ol>
   </section>
 
-  <section aria-labelledby="skills">
-    <div class="sechead"><h2 id="skills">Skills</h2><span class="label">MS CS, UNT, Dec 2026</span></div>
-    <div class="skills">
-      <div><span class="label">Platform</span><p>Kubernetes, Docker, Terraform, Argo CD, GitOps, Gateway API, Jenkins, GitHub Actions</p></div>
-      <div><span class="label">Reliability</span><p>Prometheus, Grafana, load and chaos testing, autoscaling, root cause analysis</p></div>
-      <div><span class="label">Backend and data</span><p>Java, Spring Boot, Spring Batch, Kafka, Kafka Streams, PostgreSQL, Redis, DynamoDB</p></div>
-      <div><span class="label">Cloud and languages</span><p>AWS (S3, EC2, DynamoDB, Lambda), Java, Python, SQL, JavaScript</p></div>
-    </div>
-  </section>
-
-  <footer><span>Jawad Mohammed · Dallas, TX</span><span>Project code is being published to <a href="https://github.com/JawadCEO" rel="noopener">github.com/JawadCEO</a></span></footer>
+  <footer>
+    <div><h2>Jawad Mohammed<span style="color:var(--dot)">.</span></h2><p>Software engineer in distributed systems, platform engineering and reliability. Dallas, TX.</p></div>
+    <div><span class="cap">Navigate</span><ul><li><a href="#work">Work</a></li><li><a href="#research">Research</a></li><li><a href="#journey">Journey</a></li><li><a href="Jawad_Mohammed_Resume.pdf" rel="noopener">Resume (PDF)</a></li></ul></div>
+    <div><span class="cap">Elsewhere</span><ul><li><a href="https://linkedin.com/in/mohammed-jawad-227b8810a/" rel="noopener">LinkedIn ↗</a></li><li><a href="https://github.com/JawadCEO" rel="noopener">GitHub ↗</a></li><li><a href="https://github.com/JawadCEO/FRAG_Simulation" rel="noopener">FRAG code ↗</a></li></ul></div>
+  </footer>
 </div>
 
 <script>
-document.getElementById('copy').addEventListener('click', function(){
-  var t=document.getElementById('mail').textContent, b=this;
-  var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
-  try{navigator.clipboard.writeText(t).then(done,function(){sel()})}catch(e){sel()}
-  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
-});
+(function(){
+  var btns=document.querySelectorAll('.filters button'), chips=document.querySelectorAll('#chips div');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-f');
+    btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    chips.forEach(function(c){c.hidden=!(f==='all'||c.getAttribute('data-c')===f)});
+  })});
+  document.getElementById('copy').addEventListener('click',function(){
+    var t=document.getElementById('mail').textContent,b=this;
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
+  });
+})();
 </script>
 </body>
 </html>
